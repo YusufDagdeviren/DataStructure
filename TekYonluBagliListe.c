@@ -9,6 +9,7 @@
 
 
     };
+    //
     struct node *olustur(int deger){
 
 
