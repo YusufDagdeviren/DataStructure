@@ -7,6 +7,7 @@ struct node{
     struct node *sonraki;
     struct node *onceki;
 };
+
 void yazdir(struct node *head,int ileriMiGeriMi){
 
     struct node *temp = head;
@@ -46,19 +47,42 @@ void yazdir(struct node *head,int ileriMiGeriMi){
 
 
 }
+struct node* olustur(int deger){
+
+struct node *yeniDugum =(struct node*)malloc(sizeof(struct node));
+yeniDugum->deger = deger;
+yeniDugum->sonraki = NULL;
+yeniDugum->onceki = NULL;
+return yeniDugum;
+
+}
+void sonaEkle(struct node* head,int sayi){
+struct node *yeniEleman = olustur(sayi);
+struct node *temp = head;
+
+while(temp->sonraki != NULL){
+
+    temp = temp->sonraki;
 
 
+}
+
+   temp->sonraki = yeniEleman;
+   yeniEleman->onceki = temp;
+
+
+
+
+}
 
 
 int main(){
 
-    struct node *dugum1 = (struct node*)malloc(sizeof(struct node));
-    struct node *dugum2 = (struct node*)malloc(sizeof(struct node));
-    struct node *dugum3 = (struct node*)malloc(sizeof(struct node));
+    struct node *dugum1 = olustur(0);
+    struct node *dugum2 = olustur(1);
+    struct node *dugum3 = olustur(2);
 
-    dugum1->deger = 0;
-    dugum2->deger = 1;
-    dugum3->deger = 2;
+
 
     dugum1->onceki = NULL;
     dugum1->sonraki = dugum2;
@@ -70,9 +94,11 @@ int main(){
     yazdir(dugum1,1);
     printf("\n\n\n\n\n");
     yazdir(dugum1,2);
-
-
-
+    printf("\n\n\n\n\n");
+    sonaEkle(dugum1,55);
+    yazdir(dugum1,1);
+    printf("\n\n\n\n\n");
+    yazdir(dugum1,2);
 
 
 
