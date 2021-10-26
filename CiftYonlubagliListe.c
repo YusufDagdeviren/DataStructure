@@ -74,7 +74,14 @@ while(temp->sonraki != NULL){
 
 
 }
+void basaEkle(struct node *head,int sayi){
 
+struct node* yeniDugum = olustur(sayi);
+ head->onceki = yeniDugum;
+ yeniDugum->sonraki = head;
+
+
+}
 
 int main(){
 
@@ -91,7 +98,7 @@ int main(){
     dugum3->onceki = dugum2;
     dugum3->sonraki = NULL;
 
-    yazdir(dugum1,1);
+   /* yazdir(dugum1,1);
     printf("\n\n\n\n\n");
     yazdir(dugum1,2);
     printf("\n\n\n\n\n");
@@ -99,9 +106,12 @@ int main(){
     yazdir(dugum1,1);
     printf("\n\n\n\n\n");
     yazdir(dugum1,2);
-
-
-
+    printf("\n\n\n\n\n");*/
+    basaEkle(dugum1,35);
+    yazdir(dugum1,1);
+    printf("\n\n\n\n\n");
+    yazdir(dugum1,2);
+    printf("\n\n\n\n\n");
 
 
 
