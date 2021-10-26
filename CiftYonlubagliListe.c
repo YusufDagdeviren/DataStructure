@@ -16,6 +16,11 @@ void yazdir(struct node *head,int ileriMiGeriMi){
     */
     if(ileriMiGeriMi == 1){
 
+    while(temp->onceki !=NULL){
+
+    temp = temp->onceki;
+    }
+
     while(temp!=NULL){
 
     printf("\n %d",temp->deger);
