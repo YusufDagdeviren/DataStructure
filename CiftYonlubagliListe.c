@@ -149,7 +149,34 @@ gecici->onceki = yeni;
 
 
 }
+void sonElemanSil(struct node *head){
 
+struct node *temp = head;
+while(temp->sonraki != NULL){
+
+
+
+temp = temp->sonraki;
+
+
+
+}
+temp->onceki->sonraki = NULL;
+free(temp);
+
+
+}
+void basElemanSil(struct node *head){
+struct node *temp = head;
+while(temp->onceki != NULL){
+
+
+temp = temp->onceki;
+}
+temp->sonraki->onceki = NULL;
+free(temp);
+
+}
 int main(){
 
     struct node *dugum1 = olustur(0);
@@ -183,11 +210,19 @@ int main(){
     yazdir(dugum1,1);*/
     printf("\n\n\n\n\n");
     arayaElemanEkle(dugum1,61,2);
+    yazdir(dugum1,1);
 
+    /*printf("\n\n\n\n\n");
+    sonElemanSil(dugum1);
     yazdir(dugum1,1);
     printf("\n\n\n\n\n");
-    //arayaElemanEkle(dugum1,61,2);
-    yazdir(dugum1,2);
+    yazdir(dugum1,2);*/
+    printf("\n\n\n\n\n");
+    basElemanSil(dugum1);
+    yazdir(dugum1,1);
+    printf("\n\n\n\n\n");
+    printf("Eleman sayisi = %d",elemanBas(dugum1));
+
 
 
 return 0;
