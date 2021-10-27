@@ -142,6 +142,7 @@ struct node *gecici = temp->sonraki;
 temp->sonraki = yeni;
 yeni->onceki = temp;
 yeni->sonraki = gecici;
+gecici->onceki = yeni;
 
 
 
@@ -186,7 +187,7 @@ int main(){
     yazdir(dugum1,1);
     printf("\n\n\n\n\n");
     //arayaElemanEkle(dugum1,61,2);
-    //yazdir(dugum1,2);
+    yazdir(dugum1,2);
 
 
 return 0;
