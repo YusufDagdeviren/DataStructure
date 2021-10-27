@@ -29,14 +29,15 @@ void yazdir(struct node *head,int ileriMiGeriMi){
     }
 
 
-    }else if(ileriMiGeriMi==2){
+    }
+    else if(ileriMiGeriMi==2){
 
     while(temp->sonraki != NULL){
 
     temp = temp->sonraki;
     }
 
-    while(temp !=NULL){
+    while(temp != NULL){
 
     printf("\n %d",temp->deger);
     temp = temp->onceki;
@@ -81,9 +82,69 @@ while(temp->sonraki != NULL){
 }
 void basaEkle(struct node *head,int sayi){
 
-struct node* yeniDugum = olustur(sayi);
- head->onceki = yeniDugum;
- yeniDugum->sonraki = head;
+struct node *yeniDugum = olustur(sayi);
+
+struct node *temp = head;
+while(temp->onceki !=NULL){
+
+    temp = temp->onceki;
+    }
+
+
+ temp->onceki = yeniDugum;
+ yeniDugum->sonraki = temp;
+
+
+}
+int elemanBas(struct node *head){
+
+
+int elemanSayi = 0;
+struct node *temp = head;
+
+while(temp->onceki != NULL){
+
+
+temp = temp->onceki;
+
+}
+while(temp != NULL){
+
+
+temp = temp->sonraki;
+elemanSayi++;
+}
+return elemanSayi;
+}
+void arayaElemanEkle(struct node *head,int eklenecek,int indis){
+
+struct node *yeni = olustur(eklenecek);
+int cursor = 0;
+struct node *temp = head;
+
+while(temp->onceki != NULL){
+
+temp = temp->onceki;
+}
+
+
+while(temp->sonraki != NULL){
+
+if(cursor == indis -1){
+break;
+}
+
+
+temp = temp->sonraki;
+cursor++;
+}
+struct node *gecici = temp->sonraki;
+temp->sonraki = yeni;
+yeni->onceki = temp;
+yeni->sonraki = gecici;
+
+
+
 
 
 }
@@ -114,14 +175,18 @@ int main(){
     printf("\n\n\n\n\n");*/
     basaEkle(dugum1,35);
     yazdir(dugum1,1);
-    printf("\n\n\n\n\n");
+    /*printf("\n\n\n\n\n");
     yazdir(dugum1,2);
     printf("\n\n\n\n\n");
+    basaEkle(dugum1,41);
+    yazdir(dugum1,1);*/
+    printf("\n\n\n\n\n");
+    arayaElemanEkle(dugum1,61,2);
 
-
-
-
-
+    yazdir(dugum1,1);
+    printf("\n\n\n\n\n");
+    //arayaElemanEkle(dugum1,61,2);
+    //yazdir(dugum1,2);
 
 
 return 0;
