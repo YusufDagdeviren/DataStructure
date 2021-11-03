@@ -240,7 +240,7 @@ int main(){
     printf("\n\n\n\n\n");
     yazdir(dugum1,2);*/
     printf("\n\n\n\n\n");
-    aradanElemanSil(dugum1,3);
+    aradanElemanSil(dugum1,2);
     yazdir(dugum1,1);
     printf("\n\n\n\n\n");
     printf("Eleman sayisi = %d",elemanBas(dugum1));
