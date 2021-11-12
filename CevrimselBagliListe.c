@@ -144,8 +144,8 @@ insert(dugum1,1,50);
 printCircularList(dugum1);*/
 
 struct node *dugum1 = NULL;
-pushOver(&dugum1,1);
-/*pushOver(&dugum1,2);
+/*pushOver(&dugum1,1);
+pushOver(&dugum1,2);
 pushOver(&dugum1,3);
 pushOver(&dugum1,4);
 printCircularList(dugum1);*/
