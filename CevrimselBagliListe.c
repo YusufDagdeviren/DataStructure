@@ -1,5 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
+/*
+çevrimsel bağlı listenin tek yönlü listeye göre avantajı baş pointer'ı sürekli olarak tutmamız gerekmez
+*/
 
 struct node{
 int data;
@@ -7,7 +10,17 @@ struct node *next;
 
 
 };
+int sizeList(struct node *head){
+struct node *temp = head;
+int count = 0;
+    do{
+    temp = temp->next;
+    count++;
+    }while(temp != head);
 
+    return count;
+
+}
 void makeCircular(struct node *head){
 /*
 this method makes singly linked list to circular list
@@ -41,12 +54,18 @@ void pushOver(struct node **head,int newData){
 
     if(*head != NULL){
 
+
     while(temp->next ==*head){
     temp = temp->next; //2.Adım
     temp->next = yeni;
     }
 
     }
+    else{
+    yeni->next = *head;
+
+    }
+
     *head = yeni; // 3.Adım
 
 }
@@ -86,31 +105,50 @@ yeni->next = head;
 
 
 }
+void insert(struct node *head,int index,int newData){
+
+    struct node *yeni = (struct node*)malloc(sizeof(struct node));
+    struct node *temp = head;
+    yeni->data = newData;
+
+    int count = 0;
+
+    while(count == index-1){
+    temp = temp->next;
+
+    count++;
+    }
+
+    struct node *temp2 = temp->next;
+    temp->next = yeni;
+    yeni->next = temp2;
+}
+
+
 
 int main(){
-
- /*struct node *dugum1 = (struct node *)malloc(sizeof(struct node));
+/*
+ struct node *dugum1 = (struct node *)malloc(sizeof(struct node));
  struct node *dugum2 = (struct node *)malloc(sizeof(struct node));
  struct node *dugum3 = (struct node *)malloc(sizeof(struct node));
 
-dugum1->data = 1;
-dugum2->data = 2;
-dugum3->data = 3;
+dugum1->data = 0;
+dugum2->data = 1;
+dugum3->data = 2;
 
 dugum1->next = dugum2;
 dugum2->next = dugum3;
 
 makeCircular(dugum1);
-addFirst(&dugum1,55);
-addLast(dugum1,33);
-printCircularList(dugum1);
-*/
+insert(dugum1,1,50);
+printCircularList(dugum1);*/
+
 struct node *dugum1 = NULL;
 pushOver(&dugum1,1);
-pushOver(&dugum1,2);
+/*pushOver(&dugum1,2);
 pushOver(&dugum1,3);
 pushOver(&dugum1,4);
-printCircularList(dugum1);
+printCircularList(dugum1);*/
 
 return 0;
 }

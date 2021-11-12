@@ -8,6 +8,39 @@ struct node{
     struct node *onceki;
 };
 
+void siralama(struct node *head){
+struct node *temp = head;
+int elemanBoyut = elemanBas(head);
+int degerler[elemanBoyut];
+int i = 0;
+int j = 0;
+int tmp2;
+    while(temp != NULL){
+        degerler[i] = temp->deger;
+        i = i+1;
+        temp = temp->sonraki;
+
+    }
+    for(i=0;i<3;i++){
+        for(j = i+1;j<3;j++){
+            if(degerler[j]<degerler[i]){
+            tmp2 = degerler[j];
+            degerler[j] = degerler[i];
+            degerler[i] = tmp2;
+            }
+
+    }
+
+    }
+    temp = head;
+    i = 0;
+    while(temp!=NULL){
+    temp->deger = degerler[i];
+    i++;
+    temp = temp->sonraki;
+    }
+
+}
 void yazdir(struct node *head,int ileriMiGeriMi){
 
     struct node *temp = head;
@@ -201,9 +234,9 @@ free(gecici);
 }
 int main(){
 
-    struct node *dugum1 = olustur(0);
+    struct node *dugum1 = olustur(2);
     struct node *dugum2 = olustur(1);
-    struct node *dugum3 = olustur(2);
+    struct node *dugum3 = olustur(0);
 
 
 
@@ -214,6 +247,10 @@ int main(){
     dugum3->onceki = dugum2;
     dugum3->sonraki = NULL;
 
+    siralama(dugum1);
+    yazdir(dugum1,1);
+
+
    /* yazdir(dugum1,1);
     printf("\n\n\n\n\n");
     yazdir(dugum1,2);
@@ -223,27 +260,27 @@ int main(){
     printf("\n\n\n\n\n");
     yazdir(dugum1,2);
     printf("\n\n\n\n\n");*/
-    basaEkle(dugum1,35);
-    yazdir(dugum1,1);
+    /*basaEkle(dugum1,35);
+    yazdir(dugum1,1);*/
     /*printf("\n\n\n\n\n");
     yazdir(dugum1,2);
     printf("\n\n\n\n\n");
     basaEkle(dugum1,41);
     yazdir(dugum1,1);*/
-    printf("\n\n\n\n\n");
+   /* printf("\n\n\n\n\n");
     arayaElemanEkle(dugum1,61,2);
-    yazdir(dugum1,1);
+    yazdir(dugum1,1);*/
 
     /*printf("\n\n\n\n\n");
     sonElemanSil(dugum1);
     yazdir(dugum1,1);
     printf("\n\n\n\n\n");
     yazdir(dugum1,2);*/
-    printf("\n\n\n\n\n");
+   /* printf("\n\n\n\n\n");
     aradanElemanSil(dugum1,3);
     yazdir(dugum1,1);
     printf("\n\n\n\n\n");
-    printf("Eleman sayisi = %d",elemanBas(dugum1));
+    printf("Eleman sayisi = %d",elemanBas(dugum1));*/
 
    /* basElemanSil(dugum1);
     yazdir(dugum1,1);

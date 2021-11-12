@@ -11,7 +11,9 @@
     };
     //
     struct node *olustur(int deger){
-
+    /*
+    recursive fonksiyonda tek yönlü listeyi ters çevirme
+    */
 
     struct node *yeniDugum = (struct node*)malloc(sizeof(struct node));
     yeniDugum->deger = deger;
