@@ -68,6 +68,11 @@
 
     }
 
+    int peek(struct stack *yigin){
+
+    return yigin->array[yigin->top];
+
+    }
 int main(){
 
     struct stack *yeni = createStack(5);
@@ -83,8 +88,8 @@ int main(){
     printf("Cikan eleman: %d\n",pop(yeni));
     printf("Cikan eleman: %d\n",pop(yeni));
     printf("Cikan eleman: %d\n",pop(yeni));
-    printf("Cikan eleman: %d\n",pop(yeni));
-    printf("Cikan eleman: %d\n",pop(yeni));
+    //printf("Cikan eleman: %d\n",pop(yeni));
+    printf("Top eleman: %d",peek(yeni));
 
 
 return 0;
