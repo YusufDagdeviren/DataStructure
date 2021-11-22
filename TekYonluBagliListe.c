@@ -183,6 +183,22 @@
 
 
    }
+   void degerIleSil(struct node *head,int sayi){
+
+   struct node *temp = head;
+   while(temp->sonraki->deger != sayi){
+   temp = temp->sonraki;
+   }
+
+   struct node *gecici = temp->sonraki->sonraki;
+   free(temp->sonraki);
+   temp->sonraki = gecici;
+
+
+   }
+
+
+
         int main(){
 
 
@@ -197,8 +213,10 @@
     dugum4->sonraki = dugum5;
     dugum5->sonraki = NULL;
 
+    /*printfList(dugum1);
+    printf("\n\n\n\n");*/
+    degerIleSil(dugum1,2);
     printfList(dugum1);
-    printf("\n\n\n\n");
 
     /*basaEkle(&dugum1,66);
     printfList(dugum1);*/
@@ -217,8 +235,8 @@
     //printf("\n\n\n");
    /* arayaEkleDegerIleSonra(dugum1,3,10);
     printfList(dugum1);*/
-      indisIleSil(&dugum1,3);
-      printfList(dugum1);
+      /*indisIleSil(&dugum1,3);
+      printfList(dugum1);*/
 
 
 

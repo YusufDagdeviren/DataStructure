@@ -9,12 +9,12 @@ struct node{
 };
 
 void siralama(struct node *head){
-struct node *temp = head;
-int elemanBoyut = elemanBas(head);
-int degerler[elemanBoyut];
-int i = 0;
-int j = 0;
-int tmp2;
+    struct node *temp = head;
+    int elemanBoyut = elemanBas(head);
+    int degerler[elemanBoyut];
+    int i = 0;
+    int j = 0;
+    int tmp2;
     while(temp != NULL){
         degerler[i] = temp->deger;
         i = i+1;
@@ -27,6 +27,9 @@ int tmp2;
             tmp2 = degerler[j];
             degerler[j] = degerler[i];
             degerler[i] = tmp2;
+            /*
+            Bubble sort sıralama metodu
+            */
             }
 
     }

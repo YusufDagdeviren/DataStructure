@@ -227,7 +227,26 @@
 
 
     }
+    struct node* reverseRecursive(struct node *head){
 
+    if(head == NULL){
+        return;
+    }
+    if(head->sonraki == NULL){
+        baslangic = head;
+        return head;
+
+    }
+
+    struct node *Dugum = reverseRecursive(head->sonraki);
+    Dugum->sonraki = head;
+    head->sonraki = NULL;
+
+    return head;
+
+
+
+}
 
 
 
@@ -250,6 +269,7 @@
         printf("6.Listenin Ilk Elemanini Sil\n");
         printf("7.Listenin Aradan Elemanini Sil\n");
         printf("8.Listenin Aradan Elemanini Sil(Deger ile)\n");
+        printf("9. Listeyi Tersine Çevir (Recursive fonksiyon ile)\n");
         scanf("%d",&secim);
         if(secim==1){
 
@@ -290,6 +310,10 @@
             scanf("%d",&sayi);
             aradanElemanSilDeger(sayi);
 
+
+        }else if(secim == 9){
+            reverseRecursive(baslangic);
+            listeYaz();
 
         }
 

@@ -39,6 +39,7 @@
 
     void push(struct stack *yigin,int item){
     if(isFull(yigin)){ //1 ise girer
+    printf("StackOverFlow(Bellek Asimi)");
     return;
     }
     yigin->array[++yigin->top] = item;
@@ -52,16 +53,30 @@
 
     return yigin->top == yigin->capacity-1;
 
+    /*
+    if(yigin->top==yigin->capacity -1){
+    return 1;
+    }
+    */
+
+
+
     }
 
     int isEmpty(struct stack *yigin){
     return yigin->top ==-1;
+    /*
+    if(yigin->top == -1){
+    return 1}
 
+    */
     }
 
     int pop(struct stack *yigin){
 
+
     if(isEmpty(yigin)){ // 1 ise içine girecek
+    printf("StackUnderFlow(Bellek kaybi)");
     return INT_MIN;
     }
     return yigin->array[yigin->top--];
