@@ -10,104 +10,107 @@ struct  stack{
 
 };
 
-    struct stack* newStack(unsigned size){
+struct stack* newStack(unsigned size){
 
-        struct stack *newStack =(struct stack*) malloc(sizeof(struct stack));
-        newStack->capacity = size;
-        newStack->top = -1;
-        newStack->array =(char *) malloc(newStack->capacity * sizeof(char));
-        return newStack;
+    struct stack *newStack =(struct stack*) malloc(sizeof(struct stack));
+    newStack->capacity = size;
+    newStack->top = -1;
+    newStack->array =(char *) malloc(newStack->capacity * sizeof(char));
+    return newStack;
 
+}
+
+int isEmpty(struct stack *temp){
+
+    return temp->top == -1;
+
+}
+
+void push(struct stack *temp,char data){
+    temp->array[++temp->top] = data;
+}
+char pop(struct stack *temp){
+    if(!isEmpty(temp)){
+        return temp->array[temp->top--];
     }
+    return '$';
 
-    int isEmpty(struct stack *temp){
-
-        return temp->top == -1;
-
-    }
-
-    void push(struct stack *temp,char data){
-        temp->array[++temp->top] = data;
-    }
-    char pop(struct stack *temp){
-        if(!isEmpty(temp)){
-            return temp->array[temp->top--];
-        }
-        return '$';
-
-    }
-    char peek(struct stack *temp){
-            return temp->array[temp->top];
-    }
-    // A utility function to check if
-    // The given character is operand
-    int isOperand(char ch){
-        return (ch >= 'a' && ch <= 'z') ||
-               (ch >= 'A' && ch <= 'Z');
-    }
+}
+char peek(struct stack *temp){
+    return temp->array[temp->top];
+}
+// A utility function to check if
+// The given character is operand
+int isOperand(char ch){
+    return (ch >= 'a' && ch <= 'z') ||
+           (ch >= 'A' && ch <= 'Z');
+}
 
 //     Returns higher value based on operator precedence
 
-    int priority(char ch){
+int priority(char ch){
 
-       if(ch=='+' || ch=='-')
-                return 1;
-        if(ch=='*'||ch=='/')
-                return 2;
-        if(ch=='^')
-                return 3;
+    if(ch=='+' || ch=='-')
+        return 1;
+    if(ch=='*'||ch=='/')
+        return 2;
+    if(ch=='^')
+        return 3;
 
-            return -1;
-
-
-    }
-
-    int infixToPostfix(char *ch){
-
-        int i,k;
-
-        struct stack *stack = newStack(strlen(ch));
+    return -1;
 
 
+}
 
-        for(i=0,k=-1;ch[i] ;++i){
+int infixToPostfix(char *ch){
 
-            if(isOperand(ch[i])){
-                ch[++k] = ch[i];
-            }else if(ch[i]=='('){
-                push(stack,ch[i]);
-            }else if(ch == ')'){
+    int i,k;
 
-                while(!isEmpty(stack) && peek(stack) != '('){
-                    ch[++k] = pop(stack);
-                }
+    struct stack *stack = newStack(strlen(ch));
+    if(!stack) // See if stack was created successfully
+        return -1 ;
 
-                    pop(stack);
 
-            }else{
-                // If it is entering this code blog, it is an operator
-                while (!isEmpty(stack) &&
-                priority(ch[i]) <= priority(peek(stack))){
+    for(i = 0, k = -1; ch[i] ; ++i){
+
+        if(isOperand(ch[i])){
+            ch[++k] = ch[i];
+        }else if(ch[i]=='('){
+            push(stack,ch[i]);
+        }else if(ch[i] == ')'){
+
+            while(!isEmpty(stack) && peek(stack) != '('){
                 ch[++k] = pop(stack);
             }
-                push(stack,ch[i]);
-            }
-            while(!isEmpty(stack)){
+            if (!isEmpty(stack) && peek(stack) != '(')
+                return -1; // invalid expression
+            else
+                pop(stack);
+
+        }else{
+            // If it is entering this code blog, it is an operator
+            while (!isEmpty(stack) && priority(ch[i]) <= priority(peek(stack))){
                 ch[++k] = pop(stack);
             }
-
+            push(stack,ch[i]);
         }
-        ch[++k] = '\0';
-        printf("%s",ch);
-
 
 
     }
+    while(!isEmpty(stack)){
+        ch[++k] = pop(stack);
+    }
+    ch[++k] = '\0';
+    printf("%s",ch);
+
+
+
+}
 
 int main(){
 
     char infix[] = "a+b*(c^d-e)^(f+g*h)-i";
-        infixToPostfix(infix);
+    infixToPostfix(infix);
 
 
     return 0;
