@@ -39,14 +39,12 @@ char pop(struct stack *temp){
 char peek(struct stack *temp){
     return temp->array[temp->top];
 }
-// A utility function to check if
-// The given character is operand
+
 int isOperand(char ch){
-    return (ch >= 'a' && ch <= 'z') ||
-           (ch >= 'A' && ch <= 'Z');
+    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
 }
 
-//     Returns higher value based on operator precedence
+
 
 int priority(char ch){
 
@@ -67,11 +65,10 @@ int infixToPostfix(char *ch){
     int i,k;
 
     struct stack *stack = newStack(strlen(ch));
-    if(!stack) // See if stack was created successfully
-        return -1 ;
 
 
-    for(i = 0, k = -1; ch[i] ; ++i){
+
+    for(i = 0, k = -1; ch[i] != '\0' ; i++){
 
         if(isOperand(ch[i])){
             ch[++k] = ch[i];
@@ -82,13 +79,11 @@ int infixToPostfix(char *ch){
             while(!isEmpty(stack) && peek(stack) != '('){
                 ch[++k] = pop(stack);
             }
-            if (!isEmpty(stack) && peek(stack) != '(')
-                return -1; // invalid expression
-            else
-                pop(stack);
+
+                pop(stack); // ( bunu da stackden çıkar
 
         }else{
-            // If it is entering this code blog, it is an operator
+           
             while (!isEmpty(stack) && priority(ch[i]) <= priority(peek(stack))){
                 ch[++k] = pop(stack);
             }
