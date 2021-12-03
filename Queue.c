@@ -13,7 +13,7 @@ struct Queue{
 
 };
 
-    struct Queue createQueue(unsigned capacity){
+    struct Queue* createQueue(unsigned capacity){
 
         struct Queue *yeni = (struct Queue*)malloc(sizeof (struct Queue));
         yeni->capacity = capacity;
@@ -24,8 +24,12 @@ struct Queue{
         return yeni;
 
     }
-
-
+    int isFull(struct Queue *queue){
+        return (queue->size == queue->capacity);
+    }
+    int isEmpty(struct Queue *queue){
+        return (queue->size == 0);
+    }
 
 
 int main(){
