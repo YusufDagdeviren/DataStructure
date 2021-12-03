@@ -30,7 +30,15 @@ struct Queue{
     int isEmpty(struct Queue *queue){
         return (queue->size == 0);
     }
+    void enqueue(struct Queue *queue,int item){
 
+        if(isFull(queue))
+            return;
+        queue->rear = (queue->rear + 1) % queue->capacity;
+        queue->size = queue->size + 1;
+        queue->array[queue->rear] = item;
+        printf("%d kuyruga eklendi: "+queue->array[queue->rear]);
+    }
 
 int main(){
 
