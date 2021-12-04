@@ -37,11 +37,28 @@ struct Queue{
         queue->rear = (queue->rear + 1) % queue->capacity;
         queue->size = queue->size + 1;
         queue->array[queue->rear] = item;
-        printf("%d kuyruga eklendi: ",queue->array[queue->rear]);
+        printf("%d kuyruga eklendi:\n",queue->array[queue->rear]);
+    }
+    int dequeue(struct Queue *queue){
+
+        if(isEmpty(queue)){
+            return INT_MIN;
+        }
+        int item = queue->array[queue->front];
+        queue->front = (queue->front +1) % queue->capacity;
+        queue->size = queue->size -1;
+        return item;
+
+
     }
 
 int main(){
-
-
+    struct Queue *newQueue = createQueue(5);
+    enqueue(newQueue,0);
+    enqueue(newQueue,1);
+    enqueue(newQueue,2);
+    printf("%d kuyruktan cikarildi...\n", dequeue(newQueue));
+    printf("%d kuyruktan cikarildi...\n", dequeue(newQueue));
+    printf("%d kuyruktan cikarildi...\n", dequeue(newQueue));
     return 0;
 }
