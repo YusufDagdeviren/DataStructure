@@ -1,4 +1,4 @@
-#include<stdio.h>
+/*#include<stdio.h>
 #include<stdlib.h>
 #include<limits.h>
 #include<stdbool.h>
@@ -29,7 +29,6 @@ void inorder(struct node* t) {
 	printf("%d\t", t->data);
 
 	inorder(t->right);
-
 
 
 }
@@ -113,5 +112,5 @@ int main() {
 	
 	
 
-	return 0;
-}
+	//return 0;
+//}
