@@ -103,7 +103,9 @@
    void bastanSil(struct node **head){
 
    struct node *temp =  *head;
-   *head = temp->sonraki;
+   struct node* yeni = temp->sonraki;
+   free(temp);
+   *head = yeni;
 
 
 
@@ -213,51 +215,11 @@
     dugum4->sonraki = dugum5;
     dugum5->sonraki = NULL;
 
-    /*printfList(dugum1);
-    printf("\n\n\n\n");*/
-    degerIleSil(dugum1,2);
+    bastanSil(&dugum1);
     printfList(dugum1);
 
-    /*basaEkle(&dugum1,66);
-    printfList(dugum1);*/
-    /*sonaEkle(dugum1,66);
-    printfList(dugum1);*/
-    /*arayaEkle(dugum1,66,2);
-    printfList(dugum1);*/
-   /* sondanSil(dugum1);
-    printfList(dugum1); */
-    /*bastanSil(&dugum1);
-    printfList(dugum1);*/
-    /*reverse(&dugum1);
-    printfList(dugum1);*/
-   /* arayaEkleDegerIleOnce(dugum1,3,10);
-    printfList(dugum1);*/
-    //printf("\n\n\n");
-   /* arayaEkleDegerIleSonra(dugum1,3,10);
-    printfList(dugum1);*/
-      /*indisIleSil(&dugum1,3);
-      printfList(dugum1);*/
 
 
 
-
-
-    /*int i = 0;
-    clock_t bas = clock();
-
-
-    while(i<2){
-
-        dugum1 = dugum1->sonraki;
-        i++;
-    }
-    printf("\n %d",dugum1->deger);
-
-    clock_t son = clock();
-    double zaman = 0.0;
-    zaman = (double) (son-bas)/CLOCKS_PER_SEC;
-    printf("\n gecen zaman sn=%f",zaman);
-*/
-        return 0;
         }
 
