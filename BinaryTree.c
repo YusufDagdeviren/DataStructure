@@ -33,7 +33,22 @@ void inorder(struct node* t) {
 
 
 }
-
+void preorder(struct node* q) {
+	if (q == NULL) {
+		return;
+	}
+	printf("%d\t", q->data);
+	preorder(q->left);
+	preorder(q->right);
+}
+void postorder(struct node* q) {
+	if (q == NULL) {
+		return;
+	}
+	postorder(q->left);
+	preorder(q->right);
+	printf("%d\t",q->data);
+}
 bool compute(struct node* q, int d, int level) {
 
 	if (q == NULL) {
@@ -77,15 +92,19 @@ int main() {
 	tree->left->left = newNode(6);
 	tree->right->left = newNode(9);
 
-
+	preorder(tree);
+	printf("\n");
+	postorder(tree);
+	printf("\n");
+	inorder(tree);
 	//printf("%d", depth(tree));
-
+	/*
 	if (isPerfect(tree)) {
 		printf("perfect");
 	}
 	else {
 		printf("degil");
-	}
+	}*/
 	//inorder(tree);
 	/*printf("%d\n", tree->left->data);
 	printf("%d\n", tree->data);
