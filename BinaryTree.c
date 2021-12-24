@@ -117,7 +117,7 @@ int icDugum(struct node* q) {
 		return 0;
 
 	else
-		return(icDugum(q->left) + icDugum(q->right) + 1);
+		return icDugum(q->left) + icDugum(q->right) + 1;
 }
 //çarpmada etkisiz elemanýn 1 olduðunu kanýtlayan soruyu yap
 //iç düðümün çarpýmý nedir ?
@@ -146,25 +146,33 @@ struct node* binaryInsert(struct node* q, int item) {
 
 
 }
+struct node* ara(struct node* q, int k) {
+	if ((q == NULL) || q->data == k) {
+		return q;
+	}
+	if (k < q->data)
+		return ara(q->left, k);
 
+	return ara(q->right, k);
+
+}
 
 
 int main() {
 
-	struct node *tree = NULL;
-	/*tree = newNode(1);
+	struct node* tree;
+	tree = newNode(1);
 	tree->left = newNode(2);
 	tree->right = newNode(3);
 	tree->right->right = newNode(4);
 	tree->left->right = newNode(5);
 	tree->left->left = newNode(6);
 	tree->right->left = newNode(9);
-	tree->right->right->right = newNode(10);*/
-	binaryInsert(tree, 4);
-	binaryInsert(tree, 4);
-	binaryInsert(tree, 4);
-	binaryInsert(tree, 4);
-	binaryInsert(tree, 4);
+	tree->right->right->right = newNode(10);
+
+
+	printf("ic dugum sayisi = %d\n", icDugum(tree));
+	printf("dugum sayisi = %d\n", dugumSayi(tree));
 
 	/*preorder(tree);
 	printf("\n");
