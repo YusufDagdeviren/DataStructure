@@ -132,7 +132,20 @@ void postorderDelete(struct node* q) {
 	free(q);
 
 }
+struct node* ekle(struct node* q, int item) {
 
+	if (q == NULL)
+		return newNode(q);
+
+	if (item < q->data)
+		q->left = ekle(q->left, item);
+	else
+		q->right = ekle(q->right, item);
+
+	return q;
+
+
+}
 
 
 
