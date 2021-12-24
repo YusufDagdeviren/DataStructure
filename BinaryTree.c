@@ -121,7 +121,15 @@ int icDugum(struct node* q) {
 //çarpmada etkisiz elemanın 1 olduğunu kanıtlayan soruyu yap
 //iç düğümün çarpımı nedir ?
 
+void postorderDelete(struct node* q) {
+	if (q == NULL)
+		return;
+	postorderDelete(q->left);
+	
+	postorderDelete(q->right);
+	free(q);
 
+}
 
 
 
@@ -146,12 +154,13 @@ int main() {
 	printf("\n");
 	printf("%d", depth(tree));
 	printf("\n");*/
-	int max = findMax(tree);
+	/*int max = findMax(tree);
 	printf("%d\n", max);
 	int dugum = dugumSayi(tree);
 	printf("%d\n", dugum);
 	int icData = icDugum(tree);
-	printf("%d\n", icData);
+	printf("%d\n", icData);*/
+	postorderDelete(tree);
 	////inorder(tree);
 	//printf("%d\n", tree->left->data);
 	//printf("%d\n", tree->data);
