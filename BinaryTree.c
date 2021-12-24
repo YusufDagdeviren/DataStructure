@@ -152,14 +152,19 @@ struct node* binaryInsert(struct node* q, int item) {
 int main() {
 
 	struct node *tree = NULL;
-	tree = newNode(1);
+	/*tree = newNode(1);
 	tree->left = newNode(2);
 	tree->right = newNode(3);
 	tree->right->right = newNode(4);
 	tree->left->right = newNode(5);
 	tree->left->left = newNode(6);
 	tree->right->left = newNode(9);
-	tree->right->right->right = newNode(10);
+	tree->right->right->right = newNode(10);*/
+	binaryInsert(tree, 4);
+	binaryInsert(tree, 4);
+	binaryInsert(tree, 4);
+	binaryInsert(tree, 4);
+	binaryInsert(tree, 4);
 
 	/*preorder(tree);
 	printf("\n");
