@@ -17,7 +17,8 @@ struct node {
 
 struct node* newNode(int data) {
 	struct node *yeni = (struct node*)malloc(sizeof(struct node));
-	yeni->left = yeni->right = NULL;
+	yeni->left = NULL;
+	yeni->right = NULL;
 	yeni->data = data;
 	return(yeni);
 }
@@ -127,6 +128,7 @@ void postorderDelete(struct node* q) {
 	postorderDelete(q->left);
 	
 	postorderDelete(q->right);
+
 	free(q);
 
 }
