@@ -103,14 +103,23 @@ int dugumSayi(struct node* q) {
 		return 0;
 	}
 	else {
-		return(q->left + q->right + 1);
+		return(dugumSayi(q->left) +dugumSayi(q->right) + 1);
 	}
 	
-
-
 }
+int icDugum(struct node* q) {
 
+	if (q == NULL) 
+		return 0;
+	
+	if ((q->left == NULL) && (q->right == NULL))
+		return 0;
 
+	else
+		return(icDugum(q->left) + icDugum(q->right) + 1);
+}
+//çarpmada etkisiz elemanın 1 olduğunu kanıtlayan soruyu yap
+//iç düğümün çarpımı nedir ?
 
 
 
@@ -139,8 +148,10 @@ int main() {
 	printf("\n");*/
 	int max = findMax(tree);
 	printf("%d\n", max);
-	int data = dugumSayi(tree);
-	printf("%d", data);
+	int dugum = dugumSayi(tree);
+	printf("%d\n", dugum);
+	int icData = icDugum(tree);
+	printf("%d\n", icData);
 	////inorder(tree);
 	//printf("%d\n", tree->left->data);
 	//printf("%d\n", tree->data);
