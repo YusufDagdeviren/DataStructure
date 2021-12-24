@@ -1,4 +1,4 @@
-/*#include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<limits.h>
 #include<stdbool.h>
@@ -80,6 +80,43 @@ bool isPerfect(struct node* q) {
 	int d = depth(q);
 	return compute(q, d, 0);
 }
+int findMax(struct node* q) {
+	if (q == NULL)
+		return INT_MIN;
+	
+	int max = q->data;
+	int lmax = findMax(q->left);
+	int rmax = findMax(q->right);
+
+	if (lmax > max) {
+		max = lmax;
+	}
+	if (rmax > max) {
+		max = rmax;
+	}
+	return max;
+}
+
+int dugumSayi(struct node* q) {
+
+	if (q == NULL) {
+		return 0;
+	}
+	else {
+		return(q->left + q->right + 1);
+	}
+	
+
+
+}
+
+
+
+
+
+
+
+
 int main() {
 
 	struct node *tree = NULL;
@@ -90,27 +127,28 @@ int main() {
 	tree->left->right = newNode(5);
 	tree->left->left = newNode(6);
 	tree->right->left = newNode(9);
+	tree->right->right->right = newNode(10);
 
-	preorder(tree);
+	/*preorder(tree);
 	printf("\n");
 	postorder(tree);
 	printf("\n");
 	inorder(tree);
-	//printf("%d", depth(tree));
-	/*
-	if (isPerfect(tree)) {
-		printf("perfect");
-	}
-	else {
-		printf("degil");
-	}*/
-	//inorder(tree);
-	/*printf("%d\n", tree->left->data);
-	printf("%d\n", tree->data);
-	printf("%d\n", tree->right->data);
-	printf("%d\n", tree->left->right->data);*/
+	printf("\n");
+	printf("%d", depth(tree));
+	printf("\n");*/
+	int max = findMax(tree);
+	printf("%d\n", max);
+	int data = dugumSayi(tree);
+	printf("%d", data);
+	////inorder(tree);
+	//printf("%d\n", tree->left->data);
+	//printf("%d\n", tree->data);
+	//printf("%d\n", tree->right->data);
+	//printf("%d\n", tree->left->right->data);
 	
 	
 
-	//return 0;
-//}
+	return 0;
+}
+ 
