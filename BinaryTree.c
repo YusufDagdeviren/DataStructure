@@ -10,9 +10,6 @@ struct node {
 	struct node *left;
 	struct node *right;
 
-
-
-
 };
 
 struct node* newNode(int data) {
@@ -64,18 +61,19 @@ bool compute(struct node* q, int d, int level) {
 
 
 }
-int depth(struct node*q) {
+
+int depth(struct node* q) {
 	if (q == NULL) {
 		return -1;
 	}
-	else {
-		int ldepth = depth(q->left);
-		int rdepth = depth(q->right);
-		if (ldepth > rdepth)
-			return(ldepth + 1);
-		else
-			return(rdepth + 1);
-	}
+	int ldepth = depth(q->left);
+	int rdepth = depth(q->right);
+	if (ldepth > rdepth)
+		return(ldepth + 1);
+
+	else
+		return(rdepth + 1);
+
 }
 bool isPerfect(struct node* q) {
 	int d = depth(q);
@@ -118,6 +116,20 @@ int icDugum(struct node* q) {
 
 	else
 		return icDugum(q->left) + icDugum(q->right) + 1;
+}
+
+int yaprakSayisi(struct node* q) {
+
+	if (q == NULL)
+		return 0;
+	
+	if ((q->left == NULL) && (q->right == NULL)) 
+	return 1;
+	
+
+	else
+		return yaprakSayisi(q->left) + yaprakSayisi(q->right);
+
 }
 //çarpmada etkisiz elemanın 1 olduğunu kanıtlayan soruyu yap
 //iç düğümün çarpımı nedir ?
@@ -163,16 +175,17 @@ int main() {
 	struct node* tree;
 	tree = newNode(1);
 	tree->left = newNode(2);
-	tree->right = newNode(3);
-	tree->right->right = newNode(4);
 	tree->left->right = newNode(5);
-	tree->left->left = newNode(6);
-	tree->right->left = newNode(9);
-	tree->right->right->right = newNode(10);
-
-
-	printf("ic dugum sayisi = %d\n", icDugum(tree));
-	printf("dugum sayisi = %d\n", dugumSayi(tree));
+	tree->right = newNode(3);
+	tree->left->left = newNode(4);
+	
+	//printf("Derinlik = %d", depth(tree));
+	printf("Dugum sayisi %d\n", dugumSayi(tree));
+	printf("Ic dugum sayisi %d\n", icDugum(tree));
+	printf("yaprak sayisi %d\n", yaprakSayisi(tree));
+	//printf("En buyuk deger = %d", findMax(tree));
+	/*printf("ic dugum sayisi = %d\n", icDugum(tree));
+	printf("dugum sayisi = %d\n", dugumSayi(tree));*/
 
 	/*preorder(tree);
 	printf("\n");
@@ -188,7 +201,7 @@ int main() {
 	printf("%d\n", dugum);
 	int icData = icDugum(tree);
 	printf("%d\n", icData);*/
-	postorderDelete(tree);
+	//postorderDelete(tree);
 	////inorder(tree);
 	//printf("%d\n", tree->left->data);
 	//printf("%d\n", tree->data);
