@@ -12,7 +12,21 @@ struct Queue{
     int *array;
 
 };
+int ortBul(struct Queue* queue) {
+    int toplam = 0;
+    int adet = 0;
+    while (!isEmpty(queue)) {
 
+        toplam += dequeue(queue);
+        adet++;
+
+
+    }
+    return toplam / adet;
+
+
+
+    }
     struct Queue* createQueue(unsigned capacity){
 
         struct Queue *yeni = (struct Queue*)malloc(sizeof (struct Queue));
@@ -57,8 +71,9 @@ int main(){
     enqueue(newQueue,0);
     enqueue(newQueue,1);
     enqueue(newQueue,2);
-    printf("%d kuyruktan cikarildi...\n", dequeue(newQueue));
-    printf("%d kuyruktan cikarildi...\n", dequeue(newQueue));
-    printf("%d kuyruktan cikarildi...\n", dequeue(newQueue));
+    //printf("%d kuyruktan cikarildi...\n", dequeue(newQueue));
+    //printf("%d kuyruktan cikarildi...\n", dequeue(newQueue));
+    //printf("%d kuyruktan cikarildi...\n", dequeue(newQueue));
+    printf("Ortalama = %d", ortBul(newQueue));
     return 0;
 }
